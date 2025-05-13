@@ -1,4 +1,5 @@
 import { settings } from "./main.js";
+import { poner_textos } from './iniFunctions.js';
 
 import
 {
@@ -8,11 +9,6 @@ import
     play_sonidos
 } from './functions.js';
 
-import { juega_CPU } from "./cpuFunctions.js";
-
-import { poner_textos } from './iniFunctions.js';
-
-// FUNCIONES =========================================================
 function inicia_tirarFicha(columna)
 {
     if (!settings.turno || !settings.estado.enJuego) return;
@@ -24,19 +20,7 @@ function inicia_tirarFicha(columna)
     }
 
     // ---------------------------------------------------------------
-    settings.turno = false;
-    console.log('CPU Pensando...');
-    poner_textos('Turno CPU, pensando...', 'var(--gradi-verde1)');
-
-    setTimeout(() =>
-    {
-        console.log('tirada CPU');
-        juega_CPU();
-    }, settings.constantes.tiempoRespuestaCPU);
-
-    // ---------------------------------------------------------------
     const filaLibre = check_colision(columna);
-    settings.arrayTablero[filaLibre][columna] = 1; // *** 1 = ficha Jugador ***
 
     settings.resultado.ganaJugador = check_4raya(1);
 
@@ -60,13 +44,13 @@ function inicia_tirarFicha(columna)
             settings.estado.gameOver = false;
             settings.estado.preJuego = true;
             const boton = Array.from(settings.doms.botonesInicio);
-            boton[0].style.visibility = 'visible';
+            boton[0].style.display = 'inline-block';
             play_sonidos('gameover', false);
             
         }, 5900);// ...5,9s suena 'gameover'
     }
     
-    creaFicha_yAnimaLanzamiento('ficha', filaLibre, columna);
+    creaFicha_yAnimaLanzamiento(1, filaLibre, columna);
 }
 
 export { inicia_tirarFicha };

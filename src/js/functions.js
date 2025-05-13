@@ -1,44 +1,30 @@
 import { settings } from "./main.js";
+import { Ficha } from './ficha.js';
 
-// FUNCIONES ===============================================
 function creaFicha_yAnimaLanzamiento(id, filaLibre, columna)
 {
-    console.log(id + 'tirada...');
-    //const esResponsive = window.innerWidth < 768;
+    console.log('tirada: ' + id);
 
-    let coorX = columna * settings.constantes.TILE_XX;
-    let coorY = filaLibre * settings.constantes.TILE_YY;
+    const {TILE_X, TILE_Y} = settings.constantes;
+    const radio = Math.floor(settings.constantes.TILE_X / 2);
 
-    const ficha = document.createElement('div');
-    ficha.setAttribute('class', id);
+    let coorX = (columna * TILE_X) + radio;
+    let coorY = (filaLibre * TILE_Y) + radio;
 
-    const velAnima = [0.5, 0.3, 0.6, 1.0, 1.3, 1.6];
-
-    if (filaLibre > 0) ficha.style.animation = `animaFicha${filaLibre} ${velAnima[filaLibre]}s linear forwards`;
-
-    ficha.style.top = coorY.toString() + 'px';
-    ficha.style.left = coorX.toString() + 'px';
-
-    const cuandoCae = velAnima[filaLibre] * 1000;
-    play_sonidos('ficha1', false);
-    play_sonidos('ficha2', false)
+    settings.ficha = new Ficha(id, coorX, 0, coorY, columna, filaLibre);
 
     setTimeout(() =>
     {
         play_sonidos('ficha2', false);
-    }, cuandoCae);
-
-    settings.doms.tablero.appendChild(ficha);
-    settings.arrayFichasDom.push(ficha);
-    console.log(Array.from(settings.doms.tablero.childNodes));
-    console.log(settings.arrayFichasDom);
+    }, 1000);
 }
 
 function check_colision(columna)
 {
     const filas = settings.constantes.FILAS - 1;
 
-    for (let i = filas; i >= 0; i --) {
+    for (let i = filas; i >= 0; i --)
+    {
         if (settings.arrayTablero[i][columna] === 0) return i;
     }
 
@@ -122,6 +108,52 @@ function check_diagonalesIzquierda(id, i, ii, contador)
     return false;
 }
 
+function actualizarArrayTablero()
+{
+    for (let row = 0; row < settings.constantes.FILAS; row ++)
+    {
+        for (let col = 0; col < settings.constantes.COLUMNAS; col ++)
+        {
+            const casilla = settings.arrayTablero[row][col];
+            
+            if (casilla !== 0)
+            {
+                settings.ficha.dibujaFichaArray(casilla, col, row);
+            }
+        }
+    }
+}
+
+function dibuja_tablero()
+{
+    const tablero = settings.doms.tablero;
+    const ctx = tablero.getContext('2d');
+
+    const {TILE_X, TILE_Y, FILAS, COLUMNAS} = settings.constantes;
+
+    tablero.width = TILE_X * COLUMNAS;
+    tablero.height = TILE_Y * FILAS;
+
+    ctx.fillStyle = settings.colores.TABLERO;
+    ctx.fillRect(0, 0,  tablero.width, tablero.height);
+
+    ctx.globalCompositeOperation = "destination-out";
+    for (let col = 0; col < COLUMNAS; col++)
+    {
+        for (let row = 0; row < FILAS; row++)
+        {
+            let x = 0 + col * TILE_X + TILE_X / 2;
+            let y = 0 + row * TILE_Y + TILE_Y / 2;
+
+            ctx.beginPath();
+            ctx.arc(x, y, TILE_X / 2 - 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    ctx.globalCompositeOperation = "source-over";
+}
+
 function borrar_canvas(ctx, color, width, height)
 {
     ctx.fillStyle = color;
@@ -139,6 +171,8 @@ export {
     creaFicha_yAnimaLanzamiento,
     check_colision,
     check_4raya,
+    actualizarArrayTablero,
+    dibuja_tablero,
     borrar_canvas,
     play_sonidos
 };

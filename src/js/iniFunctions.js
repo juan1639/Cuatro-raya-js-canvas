@@ -1,8 +1,7 @@
 import { settings } from "./main.js";
 import { juega_CPU } from "./cpuFunctions.js";
-import { borrar_canvas, play_sonidos } from "./functions.js";
+import { play_sonidos } from "./functions.js";
 
-// FUNCIONES ==============================================================
 function crea_arrayTablero() {
 
     settings.arrayTablero = new Array(settings.constantes.FILAS);
@@ -14,38 +13,6 @@ function crea_arrayTablero() {
     }
 
     console.log(settings.arrayTablero);
-}
-
-function crea_tablero_canvas()
-{
-    const tablero = settings.doms.tablero;
-    const ctx = tablero.getContext('2d');
-
-    const {TILE_X, TILE_Y, FILAS, COLUMNAS} = settings.constantes;
-
-    tablero.width = TILE_X * COLUMNAS;
-    tablero.height = TILE_Y * FILAS;
-
-    borrar_canvas(ctx, settings.colores.FONDO, tablero.width, tablero.height);
-
-    ctx.fillStyle = "#0055aa";
-    ctx.fillRect(0, 0,  tablero.width, tablero.height);
-
-    ctx.globalCompositeOperation = "destination-out";
-    for (let col = 0; col < COLUMNAS; col++)
-    {
-        for (let row = 0; row < FILAS; row++)
-        {
-            let x = 0 + col * TILE_X + TILE_X / 2;
-            let y = 0 + row * TILE_Y + TILE_Y / 2;
-
-            ctx.beginPath();
-            ctx.arc(x, y, TILE_X / 2 - 5, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    ctx.globalCompositeOperation = "source-over";
 }
 
 function comenzar_partida()
@@ -106,7 +73,6 @@ function poner_textos(txt, color)
 
 export {
     crea_arrayTablero,
-    crea_tablero_canvas,
     comenzar_partida,
     poner_textos
 };

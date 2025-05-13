@@ -9,7 +9,6 @@ import
     play_sonidos
 } from "./functions.js";
 
-// FUNCIONES ===============================================================
 function juega_CPU()
 {
     if (settings.turno || !settings.estado.enJuego) return;
@@ -39,15 +38,7 @@ function juega_CPU()
     settings.contadorJugadas ++;
     console.log("contador:" + settings.contadorJugadas);
 
-    // ----------------------------------------------------------------
-    setTimeout(() =>
-    {
-        settings.turno = true;
-        poner_textos('Tu turno, haz click debajo...', 'var(--blanco)');
-    }, 1900);// 1,9s tiempo estimado que tarda en caer la fichaCPU
-
     const filaLibre = check_colision(columna);
-    settings.arrayTablero[filaLibre][columna] = 2; // *** 2 = ficha CPU ***
 
     settings.resultado.ganaCPU = check_4raya(2);
 
@@ -78,7 +69,7 @@ function juega_CPU()
         }, 4900);// ...5,9s suena 'gameover'
     }
 
-    creaFicha_yAnimaLanzamiento('fichaCPU', filaLibre, columna);
+    creaFicha_yAnimaLanzamiento(2, filaLibre, columna);
 }
 
 function hacer4raya_siEsPosible()

@@ -3,8 +3,9 @@
 // 
 // ----------------------------------------------------------------
 import { Settings } from './settings.js';
-import {touchStart, click} from './controles.js';
-import {crea_tablero_canvas, crea_arrayTablero} from './iniFunctions.js';
+import { touchStart, click } from './controles.js';
+import { crea_arrayTablero } from './iniFunctions.js';
+import { actualizarArrayTablero, dibuja_tablero, borrar_canvas } from './functions.js';
 
 let settings;
 
@@ -13,7 +14,29 @@ window.onload = () =>
     settings = new Settings();
 
     crea_arrayTablero();// Tablero (parte logica)
-    crea_tablero_canvas();// Tablero (parte grafica)
+    dibuja_tablero();// Tablero (parte grafica)
+
+    bucle_principal();
 };
+
+function bucle_principal()
+{
+    requestAnimationFrame(bucle_principal);
+    //console.log("running");
+
+    const tablero = settings.doms.tablero;
+    const ctx = tablero.getContext('2d');
+
+    borrar_canvas(ctx, settings.colores.FONDO, tablero.width, tablero.height);
+
+    dibuja_tablero();
+
+    if (settings.ficha)
+    {
+        settings.ficha.actualizaFichaCayendo();
+    }
+
+    actualizarArrayTablero();
+}
 
 export { settings };

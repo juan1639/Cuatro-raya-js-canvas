@@ -40,6 +40,8 @@ export class Settings
         this.primera_partida = true;
         this.contadorJugadas = 0;
 
+        this.ficha;
+        
         this.resultado =
         {
             ganaJugador: false,

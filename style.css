@@ -4,7 +4,7 @@
     --blanco-azulado:rgb(200, 245, 255);
     --botonInicioBlancoNormal: #cccccc;
     --botonInicioBlancoIntenso: #ffffee;
-    --grisVacio: rgb(89, 89, 89);
+    --grisVacio: rgb(59, 59, 59);
     --casiNegro: #111111;
     --gradi-azul1:#0162c8;
     --gradi-azul2: #55e7fc;
@@ -74,6 +74,7 @@ body {
 #canvas {
     border: 1px solid var(--casiNegro);
     border-radius: 6px;
+    background-color: var(--grisVacio);
     max-width: 763px;
     max-height: 654px;
     /* 7 x 109 | 6 x 109 */
