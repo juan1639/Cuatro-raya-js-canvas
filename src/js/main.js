@@ -5,7 +5,7 @@
 import { Settings } from './settings.js';
 import { touchStart, click } from './controles.js';
 import { crea_arrayTablero } from './iniFunctions.js';
-import { actualizarArrayTablero, dibuja_tablero, borrar_canvas } from './functions.js';
+import { actualizar_fichas_en_tablero, dibuja_tablero, borrar_canvas } from './functions.js';
 
 let settings;
 
@@ -36,7 +36,7 @@ function bucle_principal()
         settings.ficha.actualizaFichaCayendo();
     }
 
-    actualizarArrayTablero();
+    actualizar_fichas_en_tablero();
 }
 
 export { settings };

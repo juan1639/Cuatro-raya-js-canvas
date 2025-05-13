@@ -108,7 +108,7 @@ function check_diagonalesIzquierda(id, i, ii, contador)
     return false;
 }
 
-function actualizarArrayTablero()
+function actualizar_fichas_en_tablero()
 {
     for (let row = 0; row < settings.constantes.FILAS; row ++)
     {
@@ -171,7 +171,7 @@ export {
     creaFicha_yAnimaLanzamiento,
     check_colision,
     check_4raya,
-    actualizarArrayTablero,
+    actualizar_fichas_en_tablero,
     dibuja_tablero,
     borrar_canvas,
     play_sonidos
