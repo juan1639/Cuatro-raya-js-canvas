@@ -51,10 +51,10 @@ export class Settings
 
         this.colores =
         {
-            FONDO: "#393939",
-            TABLERO: "#0935ee",
-            FICHA_ROJA: "#ee4509",
-            FICHA_VERDE: "#25ee10"
+            FONDO: "#373736",
+            TABLERO: "#0084BD",
+            FICHA_ROJA: "#9E0018",
+            FICHA_VERDE: "#F7A20F"
         };
 
         this.sonidos =
@@ -76,5 +76,22 @@ export class Settings
             winner: 0.7,
             musicafondo: 0.2
         };
+
+        this.detectarAnchoPantalla();
+    }
+
+    detectarAnchoPantalla()
+    {
+        if (window.innerWidth <= 640)
+        {
+            console.log("Comienzo con pantalla pequeña");
+            this.constantes.TILE_X = 60;
+            this.constantes.TILE_Y = 60;
+            return;
+        }
+
+        console.log("Comienzo con pantalla grande")
+        this.constantes.TILE_X = 109;
+        this.constantes.TILE_Y = 109;
     }
 }

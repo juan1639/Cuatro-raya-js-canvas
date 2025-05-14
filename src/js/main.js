@@ -4,6 +4,7 @@
 // ----------------------------------------------------------------
 import { Settings } from './settings.js';
 import { touchStart, click } from './controles.js';
+import mediaQuery from './mediaQueryEvents.js';
 import { crea_arrayTablero } from './iniFunctions.js';
 import { actualizar_fichas_en_tablero, dibuja_tablero, borrar_canvas } from './functions.js';
 

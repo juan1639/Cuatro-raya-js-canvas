@@ -14,6 +14,8 @@
     --gradi-rojo2: rgb(255, 23, 5);
     --gradi-verde1: rgb(25, 240, 9);
     --gradi-verde2: rgb(25, 180, 9);
+    --fichaRoja: #9E0018;
+    --fichaVerde: #F7A20F;
     --colorTxtJugador: darkred;
     --colorTxtCPU: darkgreen;
 }
@@ -27,6 +29,7 @@
 html, body {
     width: 100vw;
     height: fit-content;
+    min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -75,8 +78,8 @@ body {
     border: 1px solid var(--casiNegro);
     border-radius: 6px;
     background-color: var(--grisVacio);
-    max-width: 763px;
-    max-height: 654px;
+    width: 763px;
+    height: 654px;
     /* 7 x 109 | 6 x 109 */
 }
 
@@ -140,32 +143,14 @@ RESPONSIVE
 ---------------------------------------------------- */
 @media (max-width: 768px) {
     #canvas {
-        width: 100vw;
-        height: 86vh;
-        max-width: 763px;
-        max-height: 654px;
-        /* 7 x 109 | 6 x 109 */
+        width: 420px;
+        height: 360px;
+        /* 7 x 60 | 6 x 60 */
     }
 
     .botones-inicio {
         font-size: 24px;
-        padding: 0.8rem 1.4rem;
-        margin: 0.8rem 0;
-    }
-}
-
-@media (max-width: 640px) {
-    #canvas {
-        width: 100vw;
-        height: 86vh;
-        max-width: 560px;
-        max-height: 480px;
-        /* 7 x 109 | 6 x 109 */
-    }
-
-    .botones-inicio {
-        font-size: 24px;
-        padding: 0.6rem 1rem;
-        margin: 0.4rem 0;
+        padding: 0.8rem 1.2rem;
+        margin: 0.6rem 0;
     }
 }
