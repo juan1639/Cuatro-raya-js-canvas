@@ -1,6 +1,6 @@
 import { settings } from "./main.js";
 
-const mediaQuery = window.matchMedia("(max-width: 640px)");
+const mediaQuery = window.matchMedia("(max-width: 768px)");
 
 function handleChange(e)
 {

@@ -82,7 +82,7 @@ export class Settings
 
     detectarAnchoPantalla()
     {
-        if (window.innerWidth <= 640)
+        if (window.innerWidth <= 768)
         {
             console.log("Comienzo con pantalla pequeña");
             this.constantes.TILE_X = 60;
