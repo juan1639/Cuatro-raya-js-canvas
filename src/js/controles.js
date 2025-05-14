@@ -28,6 +28,19 @@ const touchStart = document.addEventListener('touchstart', (event) =>
             realizarJugada(evento);
         }
     }
+
+    if (touch === 'toggle-music')
+    {
+        console.log(touch, 'touch');
+        if (settings.sonidos.musicafondo.paused)
+        {
+            settings.sonidos.musicafondo.play();
+        }
+        else
+        {
+            settings.sonidos.musicafondo.pause();
+        }
+    }
 });
 
 // ----------------------------------------------------------------------
@@ -62,7 +75,7 @@ const click = document.addEventListener('click', (event) =>
     const clickar = event.target.id;
     const evento = event;
 
-    if (clickar === 'main')
+    if (clickar === 'toggle-music')
     {
         if (settings.sonidos.musicafondo.paused)
         {

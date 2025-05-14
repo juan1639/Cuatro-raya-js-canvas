@@ -62,8 +62,10 @@ body {
     max-width: 800px;
     display: flex;
     justify-content: center;
+    gap: 12rem;
     overflow: hidden;
     position: relative;
+    padding: 0 1.5rem;
 }
 
 #textos p {
@@ -88,21 +90,48 @@ body {
     border-radius: 6px;
     width: fit-content;
     height: fit-content;
-    max-width: 480px;
-    max-height: 100px;
-    font-size: 32px;
+    max-width: 300px;
+    font-size: 48px;
     font-weight: bold;
-    color: var(--botonInicioBlancoNormal);
+    color: #999;
     background: linear-gradient(90deg, var(--gradi-rojo2), var(--gradi-rojo1));
-    padding: 1rem 2rem;
-    margin: 1rem 0;
+    padding: 1.8rem 3.2rem;
+    /* margin: 1.2rem 0 0.2rem 0; */
+    margin-top: 20rem;
     display: inline-block;
+    position: absolute;
+    opacity: 0.7;
     /* transition: all 1s; */
     animation: none;
+    cursor: pointer;
 }
 
 .botones-inicio:hover {
-    transform: scale(1.1);
+    color: var(--botonInicioBlancoIntenso);
+}
+
+.botones-func {
+    border: none;
+    border-radius: 6px;
+    width: fit-content;
+    height: fit-content;
+    max-width: 180px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--casiNegro);
+    background: linear-gradient(90deg, var(--gradi-gris1), var(--gradi-gris2));
+    text-shadow: 1px 1px 2px #111;
+    padding: 0.8rem 2rem;
+    margin: 1rem 2rem 1rem 0;
+    display: inline-block;
+    right: 0;
+    margin-right: 2rem;
+    opacity: 0.7;
+    /* transition: all 1s; */
+    cursor: pointer;
+}
+
+.botones-func:hover {
     color: var(--botonInicioBlancoIntenso);
 }
 
@@ -116,13 +145,13 @@ body {
 
 @keyframes animaTxt {
     0% {
-        margin-left: -35%;
+        transform: scaleY(1.1);
     }
     50% {
-        margin-left: 35%;
+        transform: scaleY(0.6);
     }
     100% {
-        margin-left: -35%;
+        transform: scaleY(1.1);
     }
 }
 
@@ -149,8 +178,29 @@ RESPONSIVE
     }
 
     .botones-inicio {
-        font-size: 24px;
-        padding: 0.8rem 1.2rem;
-        margin: 0.6rem 0;
+        max-width: 180px;
+        font-size: 32px;
+        padding: 1rem 2rem;
+        margin-top: 12rem;
+    }
+
+    .botones-func {
+        max-width: 120px;
+        font-size: 18px;
+        padding: 0.4rem 1.2rem;
+        margin: 0.6rem 0.4rem 0.6rem 0;
+    }
+
+    #textos {
+        padding: 0 0.8rem;
+        gap: 1rem;
+    }
+
+    #textos p {
+        font-size: 18px;
+        font-weight: bold;
+        color: yellow;
+        text-shadow: 1px 1px 1px #111;
+        /* animation: none; */
     }
 }
