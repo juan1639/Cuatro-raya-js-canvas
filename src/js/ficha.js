@@ -1,5 +1,7 @@
 import { settings } from "./main.js";
 import { juega_CPU } from "./cpuFunctions.js";
+import { poner_textos } from "./iniFunctions.js";
+import { check_4raya, checkWinner } from "./functions.js";
 
 export class Ficha
 {
@@ -55,11 +57,22 @@ export class Ficha
 
         settings.arrayTablero[this.filaLibre][this.columna] = this.id;
 
+        if (settings.turno)
+        {
+            settings.resultado.ganaJugador = check_4raya(1);// 1= Jugador
+            checkWinner(settings.resultado.ganaJugador, 'Has ganado!', 'var(--blanco)', 'winner');
+        }
+        else
+        {
+            settings.resultado.ganaCPU = check_4raya(2);// 2= CPU
+            checkWinner(settings.resultado.ganaCPU, 'Has perdido!', 'var(--gradi-verde1)', 'boooh');
+        }
+
         settings.turno = !settings.turno;
 
         if (!settings.turno)
         {
-            //poner_textos('Turno CPU, pensando...', 'var(--colorTxtCPU)');
+            poner_textos('Turno CPU, pensando...', 'var(--colorTxtCPU)');
 
             setTimeout(() =>
             {
@@ -69,7 +82,7 @@ export class Ficha
         }
         else
         {
-            //poner_textos('Tu turno, haz click debajo...', 'var(--colorTxtJugador)');
+            poner_textos('Tu turno, haz click debajo...', 'var(--colorTxtJugador)');
         }
     }
 

@@ -13,7 +13,7 @@ export class Settings
             COLUMNAS: 7,
             PX: 'px',
             tiempoRespuestaCPU: 3200,
-            tiempoApareceWinnerModal: 2100,
+            DELAY_WINNER_MODAL: 2100,
             FPS: 50
         };
 

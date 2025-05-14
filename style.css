@@ -70,7 +70,7 @@ body {
     font-size: 32px;
     font-weight: bold;
     color: yellow;
-    text-shadow: 0 0 9px #eee;
+    text-shadow: 2px 2px 2px #111;
     /* animation: none; */
 }
 

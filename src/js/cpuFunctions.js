@@ -1,12 +1,10 @@
 import { settings } from "./main.js";
-import { poner_textos } from './iniFunctions.js';
 
 import
 {
     check_colision,
     check_4raya,
-    creaFicha_yAnimaLanzamiento,
-    play_sonidos
+    creaFicha_yAnimaLanzamiento
 } from "./functions.js";
 
 function juega_CPU()
@@ -39,36 +37,6 @@ function juega_CPU()
     console.log("contador:" + settings.contadorJugadas);
 
     const filaLibre = check_colision(columna);
-
-    settings.resultado.ganaCPU = check_4raya(2);
-
-    if (settings.resultado.ganaCPU)
-    {
-        settings.estado.enJuego = false;
-        settings.estado.gameOver = true;
-        console.log('ganaCPU:', settings.resultado.ganaCPU);
-
-        setTimeout(() =>
-        {
-            crear_letras_winnerModal('PERDISTE');
-            settings.doms.winnerModal.style.visibility = 'visible';
-            poner_textos('Has perdido!', 'var(--gradi-verde1)');
-            settings.sonidos.musicafondo.pause();
-            play_sonidos('boooh', false);
-
-        }, settings.constantes.tiempoApareceWinnerModal);
-
-        setTimeout(() =>
-        {
-            settings.estado.gameOver = false;
-            settings.estado.preJuego = true;
-            const boton = Array.from(settings.doms.botonesInicio);
-            boton[0].style.visibility = 'visible';
-            play_sonidos('gameover', false);
-
-        }, 4900);// ...5,9s suena 'gameover'
-    }
-
     creaFicha_yAnimaLanzamiento(2, filaLibre, columna);
 }
 

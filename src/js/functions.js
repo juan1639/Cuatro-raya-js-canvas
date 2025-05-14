@@ -1,5 +1,6 @@
 import { settings } from "./main.js";
 import { Ficha } from './ficha.js';
+import { poner_textos } from "./iniFunctions.js";
 
 function creaFicha_yAnimaLanzamiento(id, filaLibre, columna)
 {
@@ -124,6 +125,32 @@ function actualizar_fichas_en_tablero()
     }
 }
 
+function checkWinner(winner, txtWin, color, sonido)
+{
+    if (winner)
+    {
+        settings.estado.enJuego = false;
+        settings.estado.gameOver = true;
+
+        setTimeout(() =>
+        {
+            poner_textos(txtWin, color);
+            settings.sonidos.musicafondo.pause();
+            play_sonidos(sonido, false);
+        }, settings.constantes.DELAY_WINNER_MODAL);
+
+        setTimeout(() =>
+        {
+            settings.estado.gameOver = false;
+            settings.estado.preJuego = true;
+            const boton = Array.from(settings.doms.botonesInicio);
+            boton[0].style.display = 'inline-block';
+            play_sonidos('gameover', false);
+            
+        }, 5900);// ...5,9s suena 'gameover'
+    }
+}
+
 function dibuja_tablero()
 {
     const tablero = settings.doms.tablero;
@@ -172,6 +199,7 @@ export {
     check_colision,
     check_4raya,
     actualizar_fichas_en_tablero,
+    checkWinner,
     dibuja_tablero,
     borrar_canvas,
     play_sonidos
