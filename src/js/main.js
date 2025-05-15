@@ -6,9 +6,16 @@ import { Settings } from './settings.js';
 import { touchStart, click } from './controles.js';
 import mediaQuery from './mediaQueryEvents.js';
 import { crea_arrayTablero } from './iniFunctions.js';
-import { actualizar_fichas_en_tablero, dibuja_tablero, borrar_canvas } from './functions.js';
+import
+{
+    actualizar_fichas_en_tablero,
+    dibuja_tablero,
+    borrar_canvas,
+    instanciar_confeti
+} from './functions.js';
 
 let settings;
+const particulasConfeti = [];
 
 window.onload = () =>
 {
@@ -16,6 +23,7 @@ window.onload = () =>
 
     crea_arrayTablero();// Tablero (parte logica)
     dibuja_tablero();// Tablero (parte grafica)
+    instanciar_confeti(particulasConfeti);
 
     bucle_principal();
 };
@@ -38,6 +46,8 @@ function bucle_principal()
     }
 
     actualizar_fichas_en_tablero();
+
+    particulasConfeti.forEach(particula => particula.dibuja());
 }
 
 export { settings };

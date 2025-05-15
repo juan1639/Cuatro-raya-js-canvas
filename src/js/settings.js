@@ -12,6 +12,9 @@ export class Settings
             FILAS: 6,
             COLUMNAS: 7,
             PX: 'px',
+            NUMERO_PARTICULAS_CONFETI: 1200,
+            VP_WIDTH: window.innerWidth,
+            VP_HEIGHT: window.innerHeight,
             tiempoRespuestaCPU: 3200,
             DELAY_WINNER_MODAL: 2100,
             FPS: 50

@@ -16,6 +16,9 @@ function handleChange(e)
         settings.constantes.TILE_X = 109;// tamaño casilla normal
         settings.constantes.TILE_Y = 109;
     }
+
+    settings.constantes.VP_WIDTH = window.innerWidth;
+    settings.constantes.VP_HEIGHT = window.innerHeight;
 }
 
 mediaQuery.addEventListener("change", handleChange);

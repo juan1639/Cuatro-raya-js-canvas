@@ -1,6 +1,7 @@
 import { settings } from "./main.js";
 import { Ficha } from './ficha.js';
 import { poner_textos } from "./iniFunctions.js";
+import { ParticulaConfeti } from "./confeti.js";
 
 function creaFicha_yAnimaLanzamiento(id, filaLibre, columna)
 {
@@ -151,6 +152,14 @@ function checkWinner(winner, txtWin, color, sonido)
     }
 }
 
+function instanciar_confeti(particulasConfeti)
+{
+    for (let i = 0; i < settings.constantes.NUMERO_PARTICULAS_CONFETI; i ++)
+    {
+        particulasConfeti.push(new ParticulaConfeti(Math.floor(Math.random() * settings.constantes.VP_WIDTH), 0));
+    }
+}
+
 function dibuja_tablero()
 {
     const tablero = settings.doms.tablero;
@@ -200,6 +209,7 @@ export {
     check_4raya,
     actualizar_fichas_en_tablero,
     checkWinner,
+    instanciar_confeti,
     dibuja_tablero,
     borrar_canvas,
     play_sonidos
