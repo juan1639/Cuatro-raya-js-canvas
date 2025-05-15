@@ -149,6 +149,11 @@ function checkWinner(winner, txtWin, color, sonido)
             play_sonidos('gameover', false);
             
         }, settings.constantes.DELAY_GAMEOVER);
+
+        setTimeout(() =>
+        {
+            settings.resultado.ganaJugador = false;
+        }, 12000);
     }
 }
 
