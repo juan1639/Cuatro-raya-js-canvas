@@ -47,7 +47,12 @@ function bucle_principal()
 
     actualizar_fichas_en_tablero();
 
-    particulasConfeti.forEach(particula => particula.dibuja());
+    if (!settings.estado.enJuego && settings.resultado.ganaJugador)
+    {
+        particulasConfeti.forEach(particula => particula.dibuja());
+    }
+    
+    //console.log("Resultado:", settings.resultado.ganaJugador);
 }
 
 export { settings };

@@ -13,10 +13,12 @@ export class Settings
             COLUMNAS: 7,
             PX: 'px',
             NUMERO_PARTICULAS_CONFETI: 1200,
+            ESCALAR_PARTICULAS: 1,
             VP_WIDTH: window.innerWidth,
             VP_HEIGHT: window.innerHeight,
             tiempoRespuestaCPU: 3200,
-            DELAY_WINNER_MODAL: 2100,
+            DELAY_WINNER_MODAL: 500,
+            DELAY_GAMEOVER: 3900,
             FPS: 50
         };
 
@@ -90,11 +92,13 @@ export class Settings
             console.log("Comienzo con pantalla pequeña");
             this.constantes.TILE_X = 60;
             this.constantes.TILE_Y = 60;
+            this.constantes.ESCALAR_PARTICULAS = 2;
             return;
         }
 
         console.log("Comienzo con pantalla grande")
         this.constantes.TILE_X = 109;
         this.constantes.TILE_Y = 109;
+        this.constantes.ESCALAR_PARTICULAS = 1;
     }
 }

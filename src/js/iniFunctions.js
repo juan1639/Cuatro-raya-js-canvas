@@ -17,9 +17,15 @@ function crea_arrayTablero() {
 
 function comenzar_partida()
 {
+    // RESETEAR estado, resultado y arrayTablero -----------
     Object.keys(settings.estado).forEach(estado_bool =>
     {
         settings.estado[estado_bool] = false;
+    });
+
+    Object.keys(settings.resultado).forEach(estado_bool =>
+    {
+        settings.resultado[estado_bool] = false;
     });
 
     if (!settings.primera_partida)
@@ -34,7 +40,10 @@ function comenzar_partida()
 
     settings.contadorJugadas = 0;
     settings.estado.enJuego = true;
-    console.log(Object.values(settings.estado));
+
+    console.log("Estado: ", Object.values(settings.estado));
+    console.log("Resultado: ", Object.values(settings.resultado));
+    
     settings.primera_partida = false;
     
     const boton = Array.from(settings.doms.botonesInicio);

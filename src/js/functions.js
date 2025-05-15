@@ -148,15 +148,25 @@ function checkWinner(winner, txtWin, color, sonido)
             boton[0].style.display = 'inline-block';
             play_sonidos('gameover', false);
             
-        }, 5900);// ...5,9s suena 'gameover'
+        }, settings.constantes.DELAY_GAMEOVER);
     }
 }
 
 function instanciar_confeti(particulasConfeti)
 {
+    const tablero = settings.doms.tablero;
+
+    const {TILE_X, COLUMNAS} = settings.constantes;
+    tablero.width = TILE_X * COLUMNAS;
+
+    const posY_spawn_confeti = 200;
+
     for (let i = 0; i < settings.constantes.NUMERO_PARTICULAS_CONFETI; i ++)
     {
-        particulasConfeti.push(new ParticulaConfeti(Math.floor(Math.random() * settings.constantes.VP_WIDTH), 0));
+        particulasConfeti.push(
+            new ParticulaConfeti(Math.floor(Math.random() * tablero.width), 
+            Math.floor(Math.random() * posY_spawn_confeti) * -1)
+        );
     }
 }
 
