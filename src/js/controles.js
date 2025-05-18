@@ -1,6 +1,38 @@
 import { settings } from "./main.js";
-import { comenzar_partida } from './iniFunctions.js';
 import { inicia_tirarFicha } from "./jugadorFunctions.js";
+
+// ======================================================================
+//  EVENTOS Click
+// 
+// ----------------------------------------------------------------------
+export const click = document.addEventListener('click', (event) =>
+{
+    console.log(event.target.id);
+    console.log(event);
+    const clickar = event.target.id;
+    const evento = event;
+
+    if (settings.estado.enJuego)
+    {
+        if (clickar === 'canvas')
+        {
+            console.log("*** realizando jugada ***");
+            realizarJugada(evento);
+        }
+    }
+});
+
+function realizarJugada(evento)
+{
+    const rect = settings.doms.tablero.getBoundingClientRect();
+    const x = evento.clientX - rect.left;
+
+    // Calcular en qué columna está el click
+    const columna = Math.floor(x / settings.constantes.TILE_X);
+    console.log("Columna clickeada:", columna);
+    
+    inicia_tirarFicha(columna);
+}
 
 // ======================================================================
 //  EVENTOS touchstart
@@ -11,34 +43,13 @@ const touchStart = document.addEventListener('touchstart', (event) =>
     console.log(event.target.id, event.targetTouches);
     const touch = event.target.id;
     const evento = event;
-    
-    if (settings.estado.preJuego)
-    {
-        if (touch === 'boton-comenzar')
-        {
-            console.log('comenzar partida!');
-            comenzar_partida();
-        }
-    }
-    else if (settings.estado.enJuego)
+
+    if (settings.estado.enJuego)
     {
         if (touch === 'canvas')
         {
             console.log("*** realizando jugada ***");
             realizarJugada(evento);
-        }
-    }
-
-    if (touch === 'toggle-music')
-    {
-        console.log(touch, 'touch');
-        if (settings.sonidos.musicafondo.paused)
-        {
-            settings.sonidos.musicafondo.play();
-        }
-        else
-        {
-            settings.sonidos.musicafondo.pause();
         }
     }
 });
@@ -63,61 +74,3 @@ const touchStart = document.addEventListener('touchstart', (event) =>
         }
     }
 }); */
-
-// ----------------------------------------------------------------------
-//  EVENTOS Click
-// 
-// ----------------------------------------------------------------------
-const click = document.addEventListener('click', (event) =>
-{
-    console.log(event.target.id);
-    console.log(event);
-    const clickar = event.target.id;
-    const evento = event;
-
-    if (clickar === 'toggle-music')
-    {
-        if (settings.sonidos.musicafondo.paused)
-        {
-            settings.sonidos.musicafondo.play();
-        }
-        else
-        {
-            settings.sonidos.musicafondo.pause();
-        }
-    }
-    
-    if (settings.estado.preJuego)
-    {
-        if (clickar === 'boton-comenzar')
-        {
-            console.log('comenzar partida!');
-            comenzar_partida();
-        }
-    }
-    else if (settings.estado.enJuego)
-    {
-        if (clickar === 'canvas')
-        {
-            console.log("*** realizando jugada ***");
-            realizarJugada(evento);
-        }
-    }
-});
-
-function realizarJugada(evento)
-{
-    const rect = settings.doms.tablero.getBoundingClientRect();
-    const x = evento.clientX - rect.left;
-
-    // Calcular en qué columna está el click
-    const columna = Math.floor(x / settings.constantes.TILE_X);
-    console.log("Columna clickeada:", columna);
-    
-    inicia_tirarFicha(columna);
-}
-
-export {
-    touchStart,
-    click
-};

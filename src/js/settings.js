@@ -29,7 +29,8 @@ export class Settings
             textosP: document.getElementById('textosP'),
             //info: document.getElementById('info'),
             tablero: document.getElementById('canvas'),
-            botonesInicio: document.getElementsByClassName('botones-inicio')
+            botonesInicio: document.getElementsByClassName('botones-inicio'),
+            botonesFunc: document.getElementsByClassName('botones-func')
         };
 
         this.arrayTablero = [];

@@ -211,6 +211,18 @@ function borrar_canvas(ctx, color, width, height)
     ctx.fillRect(0, 0, width, height);
 }
 
+function toggle_music()
+{
+    if (settings.sonidos.musicafondo.paused)
+    {
+        settings.sonidos.musicafondo.play();
+    }
+    else
+    {
+        settings.sonidos.musicafondo.pause();
+    }
+}
+
 function play_sonidos(id, loop) {
 
     settings.sonidos[id].play();
@@ -226,6 +238,7 @@ export {
     checkWinner,
     instanciar_confeti,
     dibuja_tablero,
+    toggle_music,
     borrar_canvas,
     play_sonidos
 };

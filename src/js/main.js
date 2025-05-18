@@ -3,9 +3,11 @@
 // 
 // ----------------------------------------------------------------
 import { Settings } from './settings.js';
-import { touchStart, click } from './controles.js';
+import { click } from './controles.js';
 import mediaQuery from './mediaQueryEvents.js';
-import { crea_arrayTablero } from './iniFunctions.js';
+import { comenzar_partida, crea_arrayTablero } from './iniFunctions.js';
+import { toggle_music } from './functions.js';
+
 import
 {
     actualizar_fichas_en_tablero,
@@ -20,6 +22,9 @@ const particulasConfeti = [];
 window.onload = () =>
 {
     settings = new Settings();
+
+    settings.doms.botonesInicio[0].addEventListener('click', comenzar_partida);
+    settings.doms.botonesFunc[0].addEventListener('click', toggle_music);
 
     crea_arrayTablero();// Tablero (parte logica)
     dibuja_tablero();// Tablero (parte grafica)
